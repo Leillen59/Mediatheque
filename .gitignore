@@ -1,0 +1,7 @@
+# Environnement virtuel
+media-env/
+
+__pycache__/
+*.pyc
+
+*.log

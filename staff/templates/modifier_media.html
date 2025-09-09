@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifier un média</title>
+</head>
+<body>
+    <h1>Modifier : {{ media.titre }}</h1>
+
+    {% if form %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Enregistrer</button>
+        </form>
+    {% else %}
+        <p>Impossible de modifier ce type de média.</p>
+    {% endif %}
+
+    <p><a href="/staff/">⬅ Retour au dashboard</a></p>
+</body>
+</html>

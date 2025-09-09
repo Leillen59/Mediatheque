@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Médiathèque - Accueil</title>
+</head>
+<body>
+    <h1>Bienvenue à la Médiathèque</h1>
+
+    <h3>Connexion staff</h3>
+    
+    <form method="post" action="{% url 'login_staff' %}">
+        {% csrf_token %}
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" required><br>
+
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <button type="submit">Se connecter</button>
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr>
+
+    <p>Sélectionnez un type de média :</p>
+
+    <p>
+        <a href="?type=all">Tous</a> |
+        <a href="?type=livre">Livres</a> |
+        <a href="?type=dvd">DVD</a> |
+        <a href="?type=cd">CD</a> |
+        <a href="?type=jeu">Jeux de plateau</a>
+    </p>
+
+    <h2>
+        {% if filtre == "livre" %}Liste des Livres
+        {% elif filtre == "dvd" %}Liste des DVD
+        {% elif filtre == "cd" %}Liste des CD
+        {% elif filtre == "jeu" %}Liste des Jeux de plateau
+        {% else %}Tous les médias
+        {% endif %}
+    </h2>
+
+    <ul>
+        {% for media in medias %}
+            <li>
+                {{ media.titre }}
+                {% if media.emprunteur %}
+                    — Indisponible
+                {% else %}
+                    — Disponible
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Aucun média trouvé.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

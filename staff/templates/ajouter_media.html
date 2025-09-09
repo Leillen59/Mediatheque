@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un média</title>
+</head>
+<body>
+    <h1>Ajouter un 
+        {% if type_media == "livre" %}Livre{% endif %}
+        {% if type_media == "dvd" %}DVD{% endif %}
+        {% if type_media == "cd" %}CD{% endif %}
+        {% if type_media == "jeu" %}Jeu de Plateau{% endif %}
+    </h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Ajouter</button>
+    </form>
+
+    <p><a href="/staff/">⬅ Retour au dashboard</a></p>
+</body>
+</html>

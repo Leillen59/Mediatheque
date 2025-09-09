@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Retour d'un média</title>
+</head>
+<body>
+    <h1>Retourner "{{ media.titre }}"</h1>
+
+    {% if media.emprunteur %}
+        <p>Ce média est actuellement emprunté par {{ media.emprunteur.nom }} (depuis le {{ media.dateEmprunt }}).</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">✔ Confirmer le retour</button>
+        </form>
+    {% else %}
+        <p>Ce média est déjà disponible.</p>
+    {% endif %}
+
+    <p><a href="/staff/">⬅ Retour au dashboard</a></p>
+</body>
+</html>

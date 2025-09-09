@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des emprunteurs</title>
+</head>
+<body>
+    <h1>Liste des emprunteurs</h1>
+
+    <p><a href="{% url 'ajouter_emprunteur' %}">➕ Ajouter un emprunteur</a></p>
+
+    <ul>
+        {% for e in emprunteurs %}
+            <li>
+                {{ e.nom }} 
+                {% if e.bloque %}(Bloqué){% endif %}
+                — {{ e.nb_emprunts }} média(s) emprunté(s)
+                — <a href="{% url 'modifier_emprunteur' e.id %}">✏️ Modifier</a>
+                — <a href="{% url 'supprimer_emprunteur' e.id %}">❌ Supprimer</a>
+            </li>
+        {% empty %}
+            <li>Aucun emprunteur trouvé.</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="/staff/">⬅ Retour au dashboard</a></p>
+</body>
+</html>
